@@ -66,19 +66,28 @@ const potions = [
 //     .then(response => response.json())
 //     .then(data => console.log(data))
 
-// herbs.forEach(herb => console.log(herb.name + " " + herb.id));
+const list = document.getElementById("myList");
 
-// herbs.forEach(herb => {
-//     const herbName = herb.name;
-//     const herbImg = '<img src='+ herb.img +'></img>';
-//     const d1 = document.getElementsByTagName('div');
-//     document.body.innerHTML = herbImg + herbName;
-//     console.log('huh?');
-// })
+potions.forEach(potion => {
+    let li = document.createElement('li');
+    let img = document.createElement('img');
+        img.src = potion.img;
+    let liGold = document.createElement('li');
+    li.innerHTML = '<img src="' + potion.img + '" class="icon">' + '<p1 class="objName">' + potion.name + '</p1>';
+    list.append(li);
+    liGold.innerHTML = '<li class="gold">Crated Yourself: 300g 25s | Buy Out: 354g 78s</li>';
+    list.append(liGold);
+})
 
-// herbs.forEach(herb => {
-//     const herbName = herb.name;
-//     const herbImg = '<img src='+ herb.img +'></img>';
-//     const d1 = document.getElementById("here");
-//     d1.insertAdjacentHTML('afterbegin', herbImg + " " + herbName);
-// })
+
+// ================================================================= For Loop To Make 2 Columns? 
+// for (let i = 0; i < 4; i++) {
+//     let li = document.createElement('li');
+//     let img = document.createElement('img');
+//         img.src = potions.img;
+//     let liGold = document.createElement('li');
+//     li.innerHTML = '<img src="' + potions.img + '" class="icon">' + '<p1 class="objName">' + potions.name + '</p1>';
+//     list.append(li);
+//     liGold.innerHTML = '<li class="gold">Crated Yourself: 300g 25s | Buy Out: 354g 78s</li>';
+//     list.append(liGold);
+// }
