@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch');
 const herbs = [
     {
         name: "Marrowroot", 
@@ -62,9 +62,9 @@ const potions = [
     },
 ]
 
-fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US5MdIaBbE5FedcA7R4d6HP2256fe2kFBQ')
-    .then(response => response.json())
-    .then(data => console.log(data))
+// fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US5MdIaBbE5FedcA7R4d6HP2256fe2kFBQ')
+//     .then(response => response.json())
+//     .then(data => console.log(data))
 
 // herbs.forEach(herb => console.log(herb.name + " " + herb.id));
 
@@ -80,5 +80,5 @@ fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespac
 //     const herbName = herb.name;
 //     const herbImg = '<img src='+ herb.img +'></img>';
 //     const d1 = document.getElementById("here");
-//     d1.insertAdjacentHTML('afterbegin', herbImg + herbName);
+//     d1.insertAdjacentHTML('afterbegin', herbImg + " " + herbName);
 // })
