@@ -32,36 +32,36 @@ const potions = [
         id: 171276,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_flask_green.jpg",
     },{
-        name: "Potion of Phantom Fire",
+        name: "Phantom Fire",
         id: 171349,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_combat1_green.jpg",
     },{
-        name: "Potion of Empowered Exorcisms",
+        name: "Empowered Exorcisms",
         id: 307381,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_combat1_pink.jpg",
     },{
-        name: "Potion of Deathly Fixation",
+        name: "Deathly Fixation",
         id: 171351,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_combat1_yellow.jpg",
     },{
-        name: "Potion of Spectral Agility",
+        name: "Spectral Agility",
         id: 171270,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_combat2_green.jpg",
     },{
-        name: "Potion of Spectral Strength",
+        name: "Spectral Strength",
         id: 171275,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_combat2_yellow.jpg",
     },{
-        name: "Potion of Spectral Intellect",
+        name: "Spectral Intellect",
         id: 171273,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_combat2_purple.jpg",
     },{
-        name: "Potion of Hidden Spirit",
+        name: "Hidden Spirit",
         id: 171266,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_utility_red.jpg",
     },
 ]
-
+//Potion of 
 // fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US4CxB6WJpAm41lbq0DO8nUbQx0QsA5dmA')
 //     .then(response => response.json())
 //     .then(data => console.log(data.auctions))
@@ -72,6 +72,7 @@ const listTwo = document.getElementById("secList");
 // --- Arrays for Potion Name / Potion Image
 const potName = [];
 const potImg = [];
+const potCost = []; // - Once Fetch is Parsing Cost
 // --- Creates separate Arrays for Potion Name / Potion Image
 potions.forEach(potion => {
     potName.push(potion.name);
@@ -83,7 +84,7 @@ for (let i = 0; i < 8; i++) {
     let img = document.createElement('img');
     let liGold = document.createElement('li');
     li.innerHTML = '<img src="' + potImg[i] + '" class="icon">' + '<p1 class="objName">' + potName[i] + '</p1>';
-    liGold.innerHTML = '<li class="gold">Crated Yourself: 300g 25s | Buy Out: 354g 78s</li>';;
+    liGold.innerHTML = '<li class="gold">Material Cost: 300<img src="img/gold.png" class="coinImg"> 25<img src="img/silver.png" class="coinImg"> | Buy Out: 354<img src="img/gold.png" class="coinImg"> 78<img src="img/silver.png" class="coinImg"></li>';
     if ( i < 4) {
         list.append(li);
         list.append(liGold);
