@@ -62,32 +62,33 @@ const potions = [
     },
 ]
 
-// fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US5MdIaBbE5FedcA7R4d6HP2256fe2kFBQ')
+// fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US4CxB6WJpAm41lbq0DO8nUbQx0QsA5dmA')
 //     .then(response => response.json())
-//     .then(data => console.log(data))
+//     .then(data => console.log(data.auctions))
 
+// --- ID's for List Columns 1/2
 const list = document.getElementById("myList");
-
+const listTwo = document.getElementById("secList");
+// --- Arrays for Potion Name / Potion Image
+const potName = [];
+const potImg = [];
+// --- Creates separate Arrays for Potion Name / Potion Image
 potions.forEach(potion => {
+    potName.push(potion.name);
+    potImg.push(potion.img);
+})
+// --- Places HTML for Lists --- Separates into 2 Columns for Styling. 
+for (let i = 0; i < 8; i++) {
     let li = document.createElement('li');
     let img = document.createElement('img');
-        img.src = potion.img;
     let liGold = document.createElement('li');
-    li.innerHTML = '<img src="' + potion.img + '" class="icon">' + '<p1 class="objName">' + potion.name + '</p1>';
-    list.append(li);
-    liGold.innerHTML = '<li class="gold">Crated Yourself: 300g 25s | Buy Out: 354g 78s</li>';
-    list.append(liGold);
-})
-
-
-// ================================================================= For Loop To Make 2 Columns? 
-// for (let i = 0; i < 4; i++) {
-//     let li = document.createElement('li');
-//     let img = document.createElement('img');
-//         img.src = potions.img;
-//     let liGold = document.createElement('li');
-//     li.innerHTML = '<img src="' + potions.img + '" class="icon">' + '<p1 class="objName">' + potions.name + '</p1>';
-//     list.append(li);
-//     liGold.innerHTML = '<li class="gold">Crated Yourself: 300g 25s | Buy Out: 354g 78s</li>';
-//     list.append(liGold);
-// }
+    li.innerHTML = '<img src="' + potImg[i] + '" class="icon">' + '<p1 class="objName">' + potName[i] + '</p1>';
+    liGold.innerHTML = '<li class="gold">Crated Yourself: 300g 25s | Buy Out: 354g 78s</li>';;
+    if ( i < 4) {
+        list.append(li);
+        list.append(liGold);
+    } else {
+        listTwo.append(li);
+        listTwo.append(liGold);
+    };
+};
