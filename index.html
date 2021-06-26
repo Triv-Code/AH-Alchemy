@@ -8,22 +8,49 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Realm Selector Here -------------------- Potion Tab / Herb Tab (buttons) -->
-    <div class="listWrap">
-        <div class="leftList">
-            <ul id="myList">
-                <!-- <li> Potion Image + Potion Name
-                     <li> Gold Information About Potion -->
+    <header>
+<!-- Realm Selector Here -->
+<!-- <div class="nav_container"> -->
+            <ul class="nav_container">
+                <li class="nav_links" onclick="openPage(event, 'potionPage')"><button class="link">Potions</button></li>
+                <li class="nav_links" onclick="openPage(event, 'herbPage')"><button class="link">Herbs</button></li>
             </ul>
         </div>
-        <div class="rightList">
-            <ul id="secList">
-                <!-- <li> Potion Image + Potion Name
-                     <li> Gold Information About Potion -->
-            </ul>
-        </div>
+    </header>
+<!-- POTION --- Start of Potion DIV -->
+    <div id="potionPage" class="pageContent" style="display: flex;">
+        <div class="listWrap">
+            <div class="leftList">
+                <ul id="potionList_1">
+                    <!-- <li> Potion Image + Potion Name
+                        <li> Gold Information About Potion -->
+                </ul>
+            </div>
+            <div class="rightList">
+                <ul id="potionList_2">
+                    <!-- <li> Potion Image + Potion Name
+                        <li> Gold Information About Potion -->
+                </ul>
+            </div>
+        </div> 
     </div>
-    <!-- <div> Herb Tab Information </div> -->
+<!-- HERB --- Start of Herb DIV -->
+    <div id="herbPage" class="pageContent" style="display: none;">
+        <div class="listWrap">
+            <div class="leftList">
+                <ul id="herbList_1">
+                    <!-- <li> Potion Image + Potion Name
+                        <li> Gold Information About Potion -->
+                </ul>
+            </div>
+            <div class="rightList">
+                <ul id="herbList_2">
+                    <!-- <li> Potion Image + Potion Name
+                        <li> Gold Information About Potion -->
+                </ul>
+            </div>
+        </div> 
+    </div>
     <script src="ah.js"></script>
 </body>
 </html>

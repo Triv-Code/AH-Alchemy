@@ -1,7 +1,20 @@
 body {
-    display: flex;
     background-color: rgb(44, 44, 44);
     color: white;
+}
+
+.nav_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2px;
+    padding-right: 36px;
+    max-width: 400px;
+}
+
+.nav_links {
 }
 
 .objName {
@@ -27,10 +40,11 @@ body {
     flex-direction: column;
     border: solid 2px rgb(0, 0, 0);
     background-color: rgb(20, 20, 20);
-    margin-top: 100px;
     margin-left: auto;
     margin-right: auto;
     text-align: left;
+    max-width: 400px;
+    width: 400px;
 }
 
 ul {
@@ -48,12 +62,19 @@ ul {
 /* --- Media Query --- */
 @media screen and (min-width: 900px) { 
 
+    .nav_container {
+        max-width: 850px;
+    }
+
     .listWrap {
         flex-direction: row;
+        max-width: 850px;
+        width: 850px;
     }
 
     .leftList {
         margin-bottom: -32.5px;
+        width: 435px;
     }
     
     .rightList {
