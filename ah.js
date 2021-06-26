@@ -93,3 +93,18 @@ for (let i = 0; i < 8; i++) {
         listTwo.append(liGold);
     };
 };
+// --- Changes AH Buyout into Gold/Silver/Copper 
+let gold = '';
+let silver = '';
+let copper = '';
+function currency(num) {
+    num = num.toString();
+    copper = num.slice(-2);
+    silver = num.slice(-4);
+    silver = silver.substring(0,2);
+    gold = num / 10000;
+    gold = Math.floor(gold);
+    return copper;
+    return silver;
+    return gold;
+};
