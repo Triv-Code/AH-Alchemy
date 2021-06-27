@@ -1,4 +1,48 @@
 // const fetch = require('node-fetch');
+
+// Fetch Realm List and Allow User to Select Realm To Load Auction House Data From
+const realmTest = [    // Realm Name = Realm Name, Realm Value = HTTPS for Realm from API
+    {
+        name: "Select A Realm",
+        value: "List of Realms",
+    },{
+        name: "Area 52",
+        value: "area_52",
+    }, {
+        name: "Emerald Dream",
+        value: "emerald_dream",
+    }, {
+        name: "Illidan",
+        value: "illidan",
+    }, {
+        name: "Stormrage",
+        value: "stormrage",
+    }, {
+        name: "Garrosh",
+        value: "garrosh",
+    }, {
+        name: "Kel'Thuzad",
+        value: "kel_thuzad",
+    }
+];
+let realmList = document.getElementById('realmSelect');
+        // First Way
+// for (let i = 0; i < realmTest.length; i++) {
+//     let opt = document.createElement('option');
+//     opt.value = realmTest[i].value;
+//     opt.innerHTML = realmTest[i].name;
+//     realmList.append(opt);
+// };
+        // Second Way
+realmTest.forEach( realm => {
+    let opt = document.createElement('option');
+    opt.value = realm.value;
+    opt.innerHTML = realm.name;
+    realmList.append(opt);
+})
+
+// Fetch Auction House Data > Find Potion / Herb Buyout Cost > Store Cost Inside Arrays
+
 // fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US4CxB6WJpAm41lbq0DO8nUbQx0QsA5dmA')
 //     .then(response => response.json())
 //     .then(data => console.log(data.auctions))
@@ -117,7 +161,6 @@ potions.forEach(potion => {
 // --- Places HTML for Lists --- Separates into 2 Columns for Styling. 
 for (let i = 0; i < potName.length; i++) {
     let li = document.createElement('li');
-    let img = document.createElement('img');
     let liGold = document.createElement('li');
     let totalGold = intGold(potCost[i]);
     let craftTotalGold = intGold(craftCost[i]);
@@ -184,15 +227,10 @@ function intCopper(num) {
 
 // --- Hide / Show divs
 function openPage(evt, pageName) {
-    let i, pageContent, link;
+    let i, pageContent, yoda;
     pageContent = document.getElementsByClassName("pageContent");
     for (i = 0; i < pageContent.length; i++) {
       pageContent[i].style.display = "none";
     }
-    link = document.getElementsByClassName("link");
-    for (i = 0; i < link.length; i++) {
-      link[i].className = link[i].className.replace(" active", "");
-    }
     document.getElementById(pageName).style.display = "flex";
-    evt.currentTarget.className += " active";
-  }
+  };

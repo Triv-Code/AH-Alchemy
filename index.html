@@ -10,8 +10,19 @@
 <body>
     <header>
 <!-- Realm Selector Here -->
-<!-- <div class="nav_container"> -->
-            <ul class="nav_container">
+        <div class="nav_container">
+            <label for="realmSelect" class="realmLabel"></label>
+                <select name="realms" id="realmSelect"  class="selectionBox">
+                    <!-- <option value="">Select A Realm</option>
+                    <option value="area_52">Area 52</option>
+                    <option value="emerald_dream">Emerald Dream</option>
+                    <option value="illidan">Illidan</option>
+                    <option value="stormrage">Stormrage</option>
+                    <option value="garrosh">Garrosh</option>
+                    <option value="kel_thuzad">Kel'Thuzad</option> -->
+                </select>
+
+            <ul class="link_container">
                 <li class="nav_links" onclick="openPage(event, 'potionPage')"><button class="link">Potions</button></li>
                 <li class="nav_links" onclick="openPage(event, 'herbPage')"><button class="link">Herbs</button></li>
             </ul>
