@@ -9,12 +9,22 @@ body {
     justify-content: flex-end;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 75px;
     margin-bottom: 2px;
     padding-right: 36px;
     max-width: 400px;
 }
 
 .nav_links {
+}
+
+.link {
+    background-color: rgb(20, 20, 20);
+    border: solid 2px black;
+    text-decoration: none;
+    color: white;
+    width: 100px;
+    margin-left: 2px;
 }
 
 .objName {
@@ -24,7 +34,8 @@ body {
 
 .icon {
     height: 35px;
-    padding-right: .5em;
+    margin-right: .5em;
+    margin-bottom: -1px;
 }
 
 .gold {
