@@ -1,4 +1,9 @@
 // const fetch = require('node-fetch');
+// fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US4CxB6WJpAm41lbq0DO8nUbQx0QsA5dmA')
+//     .then(response => response.json())
+//     .then(data => console.log(data.auctions))
+
+// --- Array of Herb Objects
 const herbs = [
     {
         name: "Marrowroot", 
@@ -32,75 +37,94 @@ const herbs = [
         cost: 247508
     },
 ]
+
+// --- Potion Cost Variables 
+let marrowCost = herbs[0].cost;
+let risingCost = herbs[1].cost;
+let vigilCost = herbs[2].cost;
+let widowCost = herbs[3].cost;
+let deathCost = herbs[4].cost;
+let nightCost = herbs[5].cost;
+
+// --- Array of Potion Objects
 const potions = [
     {
         name: "Flask of Power",
         id: 171276,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_flask_green.jpg",
         cost: 3005402,
+        craftCost: nightCost * 3 + risingCost * 4 + marrowCost * 4 + widowCost * 4 + vigilCost * 4,
     },{
         name: "Phantom Fire",
         id: 171349,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_combat1_green.jpg",
-        cost: 1057483
+        cost: 1057483,
+        craftCost: marrowCost * 3 + risingCost * 3,
     },{
         name: "Empowered Exorcisms",
         id: 307381,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_combat1_pink.jpg",
-        cost: 1230000
+        cost: 1230000,
+        craftCost: marrowCost * 3 + widowCost * 3,
     },{
         name: "Deathly Fixation",
         id: 171351,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_combat1_yellow.jpg",
-        cost: 1230000
+        cost: 1230000,
+        craftCost:  widowCost * 3 + vigilCost * 3,
     },{
         name: "Spectral Agility",
         id: 171270,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_combat2_green.jpg",
-        cost: 1230000
+        cost: 1230000,
+        craftCost:  widowCost * 5,
     },{
         name: "Spectral Strength",
         id: 171275,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_combat2_yellow.jpg",
-        cost: 1230000
+        cost: 1230000,
+        craftCost: risingCost * 5,
     },{
         name: "Spectral Intellect",
         id: 171273,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_combat2_purple.jpg",
-        cost: 1230000
+        cost: 1230000,
+        craftCost: marrowCost * 5,
     },{
         name: "Hidden Spirit",
         id: 171266,
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_alchemy_90_utility_red.jpg",
-        cost: 1230000
+        cost: 1230000,
+        craftCost: deathCost * 2 + risingCost * 3,
     },
 ]
-//Potion of 
-// fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US4CxB6WJpAm41lbq0DO8nUbQx0QsA5dmA')
-//     .then(response => response.json())
-//     .then(data => console.log(data.auctions))
-
 // --- Start of Potion Section
 const potionList_1 = document.getElementById("potionList_1");
 const potionList_2 = document.getElementById("potionList_2");
 const potName = [];
 const potImg = [];
-const potCost = []; // - Once Fetch is Parsing Cost
+const potCost = [];  // - Once Fetch is Parsing Cost
+const craftCost = [];
+
 // --- Creates separate Arrays for Potion Name / Potion Image
 potions.forEach(potion => {
     potName.push(potion.name);
     potImg.push(potion.img);
     potCost.push(potion.cost);
+    craftCost.push(potion.craftCost);
 })
+
 // --- Places HTML for Lists --- Separates into 2 Columns for Styling. 
 for (let i = 0; i < potName.length; i++) {
     let li = document.createElement('li');
     let img = document.createElement('img');
     let liGold = document.createElement('li');
     let totalGold = intGold(potCost[i]);
+    let craftTotalGold = intGold(craftCost[i]);
     let totalSilver = intSilver(potCost[i]);
+    let craftTotalSilver = intSilver(craftCost[i]);
     li.innerHTML = '<img src="' + potImg[i] + '" class="icon">' + '<p1 class="objName">' + potName[i] + '</p1>';
-    liGold.innerHTML = '<li class="gold">Material Cost: ' + totalGold + '<img src="img/gold.png" class="coinImg">    ' + totalSilver + '<img src="img/silver.png" class="coinImg"> | Buy Out: 354<img src="img/gold.png" class="coinImg"> 78<img src="img/silver.png" class="coinImg"></li>';
+    liGold.innerHTML = '<li class="gold">Material Cost: ' + craftTotalGold + '<img src="img/gold.png" class="coinImg">    ' + craftTotalSilver + '<img src="img/silver.png" class="coinImg"> | Buy Out: ' + totalGold + '<img src="img/gold.png" class="coinImg">    ' + totalSilver + '<img src="img/silver.png" class="coinImg"></li>';
     if ( i <  potName.length / 2) {
         potionList_1.append(li);
         potionList_1.append(liGold);
@@ -109,7 +133,7 @@ for (let i = 0; i < potName.length; i++) {
         potionList_2.append(liGold);
     };
 };
-// --- Start of Herb Section
+// --- Start of Herb Section ---
 const herbList_1 = document.getElementById("herbList_1");
 const herbList_2 = document.getElementById("herbList_2");
 const herbName = [];
@@ -121,6 +145,7 @@ herbs.forEach(herb => {
     herbImg.push(herb.img);
     herbCost.push(herb.cost);
 })
+
 // --- Herb List Loop
 for (let i = 0; i < herbName.length; i++) {
     let li = document.createElement('li');
@@ -156,15 +181,6 @@ function intCopper(num) {
     copper = num.slice(-2);
     return copper
 };
-
-// potions.forEach(potion => {
-//     let finalGold = intGold(potion.cost);
-//     console.log(finalGold);
-//     let finalSilver = intSilver(potion.cost);
-//     console.log(finalSilver);
-//     let finalCopper = intCopper(potion.cost);
-//     console.log(finalCopper);
-// })
 
 // --- Hide / Show divs
 function openPage(evt, pageName) {
