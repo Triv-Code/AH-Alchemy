@@ -23,7 +23,7 @@ const realmTest = [    // Realm Name = Realm Name, Realm Value = HTTPS for Realm
     }, {
         name: "Kel'Thuzad",
         value: "kel_thuzad",
-    }
+    },
 ];
 let realmList = document.getElementById('realmSelect');
         // First Way
@@ -43,11 +43,13 @@ realmTest.forEach( realm => {
 
 // Fetch Auction House Data > Find Potion / Herb Buyout Cost > Store Cost Inside Arrays
 
-// fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US4CxB6WJpAm41lbq0DO8nUbQx0QsA5dmA')
+// fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US7afc4J5SQofhf718YXaZyVKGc9DA7QW7')
 //     .then(response => response.json())
-//     .then(data => console.log(data.auctions))
+//     .then(data => console.log(data));
+
 
 // --- Array of Herb Objects
+
 const herbs = [
     {
         name: "Marrowroot", 
@@ -80,7 +82,7 @@ const herbs = [
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_nightshade.jpg",
         cost: 247508
     },
-]
+];
 
 // --- Potion Cost Variables 
 let marrowCost = herbs[0].cost;
@@ -141,7 +143,7 @@ const potions = [
         cost: 1230000,
         craftCost: deathCost * 2 + risingCost * 3,
     },
-]
+];
 // --- Start of Potion Section
 const potionList_1 = document.getElementById("potionList_1");
 const potionList_2 = document.getElementById("potionList_2");
@@ -157,6 +159,8 @@ potions.forEach(potion => {
     potCost.push(potion.cost);
     craftCost.push(potion.craftCost);
 })
+
+
 
 // --- Places HTML for Lists --- Separates into 2 Columns for Styling. 
 for (let i = 0; i < potName.length; i++) {
@@ -176,6 +180,7 @@ for (let i = 0; i < potName.length; i++) {
         potionList_2.append(liGold);
     };
 };
+
 // --- Start of Herb Section ---
 const herbList_1 = document.getElementById("herbList_1");
 const herbList_2 = document.getElementById("herbList_2");
@@ -189,7 +194,7 @@ herbs.forEach(herb => {
     herbCost.push(herb.cost);
 })
 
-// --- Herb List Loop
+// ---  Herb List Loop
 for (let i = 0; i < herbName.length; i++) {
     let li = document.createElement('li');
     let img = document.createElement('img');
@@ -227,7 +232,7 @@ function intCopper(num) {
 
 // --- Hide / Show divs
 function openPage(evt, pageName) {
-    let i, pageContent, yoda;
+    let i, pageContent, link;
     pageContent = document.getElementsByClassName("pageContent");
     for (i = 0; i < pageContent.length; i++) {
       pageContent[i].style.display = "none";
