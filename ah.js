@@ -42,6 +42,7 @@ realmTest.forEach( realm => {
 })
 
 // Fetch Auction House Data > Find Potion / Herb Buyout Cost > Store Cost Inside Arrays
+// Fetch for Potions
 
 // fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US7afc4J5SQofhf718YXaZyVKGc9DA7QW7')
 //     .then(response => response.json())
@@ -144,6 +145,7 @@ const potions = [
         craftCost: deathCost * 2 + risingCost * 3,
     },
 ];
+
 // --- Start of Potion Section
 const potionList_1 = document.getElementById("potionList_1");
 const potionList_2 = document.getElementById("potionList_2");
@@ -159,8 +161,6 @@ potions.forEach(potion => {
     potCost.push(potion.cost);
     craftCost.push(potion.craftCost);
 })
-
-
 
 // --- Places HTML for Lists --- Separates into 2 Columns for Styling. 
 for (let i = 0; i < potName.length; i++) {
