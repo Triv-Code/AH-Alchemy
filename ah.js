@@ -85,7 +85,7 @@ const herbs = [
     },
 ];
 
-// --- Potion Cost Variables 
+// --- Potion Cost Variables (used in potions Array)
 let marrowCost = herbs[0].cost;
 let risingCost = herbs[1].cost;
 let vigilCost = herbs[2].cost;
@@ -147,6 +147,7 @@ const potions = [
 ];
 
 // --- Start of Potion Section
+// --- Used for innerHTML
 const potionList_1 = document.getElementById("potionList_1");
 const potionList_2 = document.getElementById("potionList_2");
 const potName = [];
@@ -182,6 +183,7 @@ for (let i = 0; i < potName.length; i++) {
 };
 
 // --- Start of Herb Section ---
+// --- Herb Arrays for innerHTML 
 const herbList_1 = document.getElementById("herbList_1");
 const herbList_2 = document.getElementById("herbList_2");
 const herbName = [];

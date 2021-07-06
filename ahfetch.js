@@ -1,6 +1,5 @@
-const { clear } = require('console');
 const fetch = require('node-fetch');
-
+// Array of Potion Objects
 const potions = [
     {
         name: "Flask of Power",
@@ -44,7 +43,7 @@ const potions = [
         // craftCost: deathCost * 2 + risingCost * 3,
     },
 ];
-
+// Array of Herb Objects
 const herbs = [
     {
         name: "Marrowroot", 
@@ -72,40 +71,19 @@ const herbs = [
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_nightshade.jpg",
     },
 ];
-
-// Fetch for Potions
-//     for (let i = 0; i < 8; i++ ) {
-//         fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=USbEpXIL6FZY7mXxSe5zlmsJyQU1Mx9Pe4')
-//             .then(response => response.json())
-//             .then(data => data.auctions.filter((auction) => auction.item.id === potions[1].id ))         // Find item by ID
-//             .then(data => data.map((cost) => cost.unit_price))                                           // Find Array of Prices
-//             .then(data => Math.min(...data))                                                             // Find Lowest Price in Array
-//             .then(data => potions[1].cost = data)                                                        // Log that Price
-//             .then(data => console.log(potions[1].cost));
-// };
-
-// Fetch for Herbs
-// for (let i = 0; i < 6; i++ ) {
-//     fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=USbEpXIL6FZY7mXxSe5zlmsJyQU1Mx9Pe4')
-//         .then(response => response.json())
-//         .then(data => data.auctions.filter((auction) => auction.item.id === herbs[i].id ))       // Find item by ID
-//         .then(data => data.map((cost) => cost.unit_price))                                       // Find Array of Prices
-//         .then(data => Math.min(...data))                                                         // Find Lowest Price in Array
-//         .then(data => herbs[i].cost = data)                                                      // Log that Price
-//         // .then(data => console.log(herbs[i].cost));
-// };
-
-
-
-fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US9X229iJ6N9vSMMYwldID03B2jvdrMFxx')
-        .then(response => response.json())
-        .then(data => data.auctions.filter((auction) => auction.item.id === potions[1].id ))       // Find item by ID
-        .then(data => data.map((cost) => cost.unit_price))                                         // Find Array of Prices
-        .then(data => Math.min(...data))                                                           // Find Lowest Price in Array
-        .then(data => potions[1].cost = data)                                                      // Log that Price
-        .then(data => logPot())                                                                    // Call Function for innerHTML
-
+// Loop for Fetching AH Price for Potions & Updating potions Array
+for (let i = 0; i < 8; i++ ) {
+    fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US9X229iJ6N9vSMMYwldID03B2jvdrMFxx')
+            .then(response => response.json())
+            .then(data => data.auctions.filter((auction) => auction.item.id === potions[i].id ))       // Find item by ID
+            .then(data => data.map((cost) => cost.unit_price))                                         // Find Array of Prices
+            .then(data => Math.min(...data))                                                           // Find Lowest Price in Array
+            .then(data => potions[i].cost = data)                                                      // Log that Price
+            .then(data => logPot())                                                                    // Call Function for innerHTML
+};
 // Logging Function to test Array Update
 function logPot() {
-    console.log(potions[1]);
+    for (let i = 0; i < 8; i++) {
+        console.log(potions[i]);
+    };
 };
