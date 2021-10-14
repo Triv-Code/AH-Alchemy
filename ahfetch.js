@@ -1,5 +1,35 @@
 const { url } = require('inspector');
 const fetch = require('node-fetch');
+
+// Array of Herb Objects
+const herbs = [
+    {
+        name: "Marrowroot", 
+        id: 168589,
+        img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_marrowroot.jpg",
+    },{
+        name: "Rising Glory", 
+        id: 168586,
+        img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_risingglory.jpg",
+    },{
+        name: "Vigil's Torch", 
+        id: 170554,
+        img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_ardenweald.jpg",
+    },{
+        name: "Widowbloom", 
+        id: 168583,
+        img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_bloodcup.jpg",
+    },{
+        name: "Death Blossom", 
+        id: 169701,
+        img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_deathblossom.jpg",
+    },{
+        name: "Nightshade", 
+        id: 171315,
+        img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_nightshade.jpg",
+    },
+];
+
 // Array of Potion Objects
 const potions = [
     {
@@ -44,34 +74,6 @@ const potions = [
         // craftCost: deathCost * 2 + risingCost * 3,
     },
 ];
-// Array of Herb Objects
-const herbs = [
-    {
-        name: "Marrowroot", 
-        id: 168589,
-        img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_marrowroot.jpg",
-    },{
-        name: "Rising Glory", 
-        id: 168586,
-        img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_risingglory.jpg",
-    },{
-        name: "Vigil's Torch", 
-        id: 170554,
-        img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_ardenweald.jpg",
-    },{
-        name: "Widowbloom", 
-        id: 168583,
-        img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_bloodcup.jpg",
-    },{
-        name: "Death Blossom", 
-        id: 169701,
-        img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_deathblossom.jpg",
-    },{
-        name: "Nightshade", 
-        id: 171315,
-        img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_nightshade.jpg",
-    },
-];
 
 //  This would call the API multiple times.... 
 // for (let i = 0; i < 8; i++ ) {
@@ -86,15 +88,39 @@ const herbs = [
 // If the API is stored inside a variable, is it only ran once, regardless of how many times you call the variable? 
 ahData = fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US7ojuxwdmAtxfikgsR4Zu4b68IM8rd1li')
             .then(response => response.json())
-
-for (let i = 0; i < 8; i++ ) {
+// Potions Cost Update
+for (let i = 0; i < potions.length; i++ ) {
     ahData
         .then(data => data.auctions.filter((auction) => auction.item.id === potions[i].id ))
         .then(data => data.map((cost) => cost.unit_price))
         .then(data => Math.min(...data))
         .then(data => potions[i].cost = data)
 }
+// Herbs Cost Update
+for (let i = 0; i < herbs.length; i++ ) {
+    ahData
+        .then(data => data.auctions.filter((auction) => auction.item.id === herbs[i].id ))
+        .then(data => data.map((cost) => cost.unit_price))
+        .then(data => Math.min(...data))
+        .then(data => herbs[i].cost = data)
+}
+
 
 setTimeout(() => {
+    // let marrowCost = herbs[0].cost;
+    // let risingCost = herbs[1].cost;
+    // let vigilCost = herbs[2].cost;
+    // let widowCost = herbs[3].cost;
+    // let deathCost = herbs[4].cost;
+    // let nightCost = herbs[5].cost;
+    potions[0].craftCost = herbs[5].cost * 3 +  herbs[1].cost * 4 + herbs[0].cost * 4 +  herbs[3].cost * 4 +  herbs[2].cost * 4;
+    potions[1].craftCost = herbs[0].cost * 3 +  herbs[1].cost * 3;
+    potions[2].craftCost = herbs[0].cost * 3 +  herbs[3].cost * 3;
+    potions[3].craftCost = herbs[3].cost * 3 +  herbs[2].cost * 3;
+    potions[4].craftCost = herbs[3].cost * 5;
+    potions[5].craftCost = herbs[1].cost * 5;
+    potions[6].craftCost = herbs[0].cost * 5;
+    potions[7].craftCost = herbs[4].cost * 2 +  herbs[1].cost * 3;
+
     console.log(potions)
 }, 5000);
