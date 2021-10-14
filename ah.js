@@ -93,7 +93,7 @@ let widowCost = herbs[3].cost;
 let deathCost = herbs[4].cost;
 let nightCost = herbs[5].cost;
 
-// --- Array of Potion Objects
+// --- Array of Potion Objects  --- Holds Calculations for Crafting Potion Cost
 const potions = [
     {
         name: "Flask of Power",

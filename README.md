@@ -9,6 +9,8 @@ Calculate and display data based on an external factor (ex: get the current date
          ^Displayed on Website           ^Fetched from API
     Does this count?      
 
+Converting INT (copper) into a currency (Gold/Silver/Copper)
+
 --- Not Done ---
 Read and parse an external file (such as JSON or CSV) into your application and display some data from that in your app
 Retrieve data from an external API and display data in your app (such as with fetch() or with AJAX)
@@ -20,4 +22,3 @@ Getting Auction House Data from the API, searching for the item auction via ID, 
 --- Other JS Used ---
 Placed majority of HTML with JS
 Hide/Show DIVs instead of HTML Pages
-Took an Integer and turned it into Currency (Gold/Silver/Copper)

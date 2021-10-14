@@ -1,3 +1,4 @@
+const { url } = require('inspector');
 const fetch = require('node-fetch');
 // Array of Potion Objects
 const potions = [
@@ -71,19 +72,29 @@ const herbs = [
         img: "https://render-us.worldofwarcraft.com/icons/56/inv_misc_herb_nightshade.jpg",
     },
 ];
-// Loop for Fetching AH Price for Potions & Updating potions Array
-for (let i = 0; i < 8; i++ ) {
-    fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US9X229iJ6N9vSMMYwldID03B2jvdrMFxx')
+
+//  This would call the API multiple times.... 
+// for (let i = 0; i < 8; i++ ) {
+//     fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US7ojuxwdmAtxfikgsR4Zu4b68IM8rd1li')
+//             .then(response => response.json())
+//             .then(data => data.auctions.filter((auction) => auction.item.id === potions[i].id ))
+//             .then(data => data.map((cost) => cost.unit_price))
+//             .then(data => Math.min(...data))
+//             .then(data => potions[i].cost = data)
+// };
+
+// If the API is stored inside a variable, is it only ran once, regardless of how many times you call the variable? 
+ahData = fetch('https://us.api.blizzard.com/data/wow/connected-realm/61/auctions?namespace=dynamic-us&locale=en_US&access_token=US7ojuxwdmAtxfikgsR4Zu4b68IM8rd1li')
             .then(response => response.json())
-            .then(data => data.auctions.filter((auction) => auction.item.id === potions[i].id ))       // Find item by ID
-            .then(data => data.map((cost) => cost.unit_price))                                         // Find Array of Prices
-            .then(data => Math.min(...data))                                                           // Find Lowest Price in Array
-            .then(data => potions[i].cost = data)                                                      // Log that Price
-            .then(data => logPot())                                                                    // Call Function for innerHTML
-};
-// Logging Function to test Array Update
-function logPot() {
-    for (let i = 0; i < 8; i++) {
-        console.log(potions[i]);
-    };
-};
+
+for (let i = 0; i < 8; i++ ) {
+    ahData
+        .then(data => data.auctions.filter((auction) => auction.item.id === potions[i].id ))
+        .then(data => data.map((cost) => cost.unit_price))
+        .then(data => Math.min(...data))
+        .then(data => potions[i].cost = data)
+}
+
+setTimeout(() => {
+    console.log(potions)
+}, 5000);
